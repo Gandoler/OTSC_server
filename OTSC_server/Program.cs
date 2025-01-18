@@ -2,13 +2,15 @@ using OTSC_server.Telegram;
 using OTSC_server.Telegram.CodeVerification;
 using OTSC_server.Telegram.CodeVerification.CodeFactory;
 using Serilog;
+using Serilog.Sinks.Async;
 internal static class Program
 {
     public static void Main(string[] args)
     {
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.File(@"C:\Users\Николай\RiderProjects\OTSC_server\OTSC_server\Logs\myapp.log",
-                rollingInterval: RollingInterval.Day)
+            .WriteTo.Async(a =>a.File(@"C:\Users\Николай\RiderProjects\OTSC_server\OTSC_server\Logs\myapp.log",
+                rollingInterval: RollingInterval.Month))
+            
             .CreateLogger();
 
 
@@ -23,8 +25,9 @@ internal static class Program
 
         }
 
-        app.MapGet("/VerificationCode/{id:int}", async (int id) =>
+        app.MapGet("/VerificationCode/{id:long}", async (long id) =>
         {
+            Console.WriteLine("кто-то подключился");
             CodeSenderFactory codeSenderFactory = new("7956821282:AAGfyHzlWYx4hg82r6dwbgTfhH8mX63PCFs");
             var chechexistchat = codeSenderFactory.CreateCheckExistance();
             bool userExists = await chechexistchat.CheckChatExistance(id);
