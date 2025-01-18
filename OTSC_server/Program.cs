@@ -39,18 +39,19 @@ internal static class Program
 
 
                 await sender.SendVerificationCodeAsync(id);
-                Log.Information($"All Good Code here");
+                Log.Information($"All Good Code here for user:{id}");
                 return Results.Ok(
                     new
                     {
                         Message = $"Verification Code {id}",
+                        IsSubscribed = true,
                         Code = sender.Code
                     });
             }
             else
             {
                 Log.Information($"user{id} didnt subscribe");
-                return Results.NotFound(new { Message = "User not found" });
+                return Results.NotFound(new { Message = "User not found" ,IsSubscribed = false,});
             }
         });
 
