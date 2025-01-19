@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTSC_server", "OTSC_server\OTSC_server.csproj", "{C67E0AA6-F2A9-4FDD-83ED-19B7525F982F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{730BDAEE-5A34-40F1-90EF-EE95A7329094}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C67E0AA6-F2A9-4FDD-83ED-19B7525F982F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67E0AA6-F2A9-4FDD-83ED-19B7525F982F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67E0AA6-F2A9-4FDD-83ED-19B7525F982F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{730BDAEE-5A34-40F1-90EF-EE95A7329094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{730BDAEE-5A34-40F1-90EF-EE95A7329094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{730BDAEE-5A34-40F1-90EF-EE95A7329094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{730BDAEE-5A34-40F1-90EF-EE95A7329094}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
