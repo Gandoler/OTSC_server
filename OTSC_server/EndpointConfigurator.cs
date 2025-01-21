@@ -3,6 +3,7 @@
 using OTSC_server.Telegram.CodeVerification;
 using OTSC_server.Telegram.CodeVerification.CodeFactory;
 using OTSC_ui.Tools.AppSettingJsonPhars.ConnectionStringManager;
+using OTSC_ui.Tools.HTTPqUERY;
 using Serilog;
 
 namespace OTSC_server;
@@ -24,31 +25,34 @@ public static class EndpointConfigurator
     
     public static void ConfigureEndpoints(WebApplication app)
     {
-        app.MapGet("/VerificationCode/{id:long}", async (long id) =>
+        app.MapPost("/VerificationCode", async (VerificationRequestCodeSend verificationRequest) =>
         {
             Console.WriteLine("кто-то подключился");
             
            
-            bool userExists = await _checkExistance.CheckChatExistance(id);
+            bool userExists = await _checkExistance.CheckChatExistance(verificationRequest.Id);
 
             if (userExists)
             {
                 CodeSender sender = _codeSenderFactory.CreateCodeSender();
-                await sender.SendVerificationCodeAsync(id);
+                await sender.SendVerificationCodeAsync(verificationRequest.Id);
 
-                Log.Information($"All Good Code here for user:{id}");
-                return Results.Ok(new
-                {
-                    Message = $"Verification Code {id}",
-                    IsSubscribed = true,
-                    Code = sender.Code
-                });
+                Log.Information($"All Good Code here for user:{verificationRequest.Id}");
+                return Results.Ok(new VerificationResponseCodeSend($"Verification Code {verificationRequest.Id}",
+                    sender.Code, true));
+
             }
             else
             {
-                Log.Information($"user{id} didnt subscribe");
-                return Results.NotFound(new { Message = "User not found", IsSubscribed = false });
+                Log.Information($"user{verificationRequest.Id} didnt subscribe");
+                return Results.NotFound(new VerificationResponseCodeSend($"User not found {verificationRequest.Id}" , false ));
             }
+        });
+
+
+        app.MapPost("/SendMail", async (VerificationRequestCodeSend verificationRequest) =>
+        {
+
         });
     }
 }
