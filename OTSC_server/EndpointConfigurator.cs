@@ -52,7 +52,7 @@ public static class EndpointConfigurator
 
         app.MapPost("/SendMail", async (VerificationRequestCodeSend verificationRequest) =>
         {
-
+            
         });
     }
 }
