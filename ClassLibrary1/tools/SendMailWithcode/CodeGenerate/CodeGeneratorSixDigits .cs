@@ -1,6 +1,6 @@
 ﻿namespace OTSC_ui.Tools.SendMailWithcode.CodeGenerate
 {
-    internal class CodeGeneratorsix : ICodeGeneratorMail
+    public class CodeGeneratorsix : ICodeGeneratorMail
     {
 
         public string GenerateCode()

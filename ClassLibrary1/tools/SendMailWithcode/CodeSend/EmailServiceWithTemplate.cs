@@ -5,12 +5,13 @@ using Serilog;
 
 namespace OTSC_ui.Tools.SendMailWithcode.CodeSend
 {
-    internal class EmailServiceWithTemplate(EmailSettings emailSettings ) : IEmailService
+    public class EmailServiceWithTemplate(EmailSettings emailSettings ) : IEmailService
     {
         private readonly string _senderEmail = emailSettings.SenderEmail;
         private readonly string _senderPassword = emailSettings.SenderPassword;
         private readonly string _smtpHost = emailSettings.SmtpServer;
         private readonly int _smtpPort = emailSettings.SmtpPort;
+         
 
 
         private MailMessage GenerateMail(string recipientEmail, string subject, string body)
