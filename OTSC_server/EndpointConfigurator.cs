@@ -59,11 +59,11 @@ public static class EndpointConfigurator
         app.MapPost("/SendMail", async (ChangePassRequest changePassRequest ) =>
         {
             Console.WriteLine("connect in SendMail code");
-            _codeGeneratorMail.GenerateCode();
-            await _emailServiceWithTemplate.SendEmailAsync(changePassRequest.Email , "You code", $"{_codeGeneratorMail.GenerateCode()}");
+            string code = _codeGeneratorMail.GenerateCode();
+            await _emailServiceWithTemplate.SendEmailAsync(changePassRequest.Email , "You code", $"{code}");
             Log.Information($"All Good Code here for user email:{changePassRequest.Email} in {nameof(ConfigureEndpoints)}");
 
-            return Results.Ok();
+            return Results.Ok(new ChangePassResponse(code));
         });
     }
 }
