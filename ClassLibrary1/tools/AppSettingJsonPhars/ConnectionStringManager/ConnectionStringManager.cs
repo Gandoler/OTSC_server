@@ -18,7 +18,7 @@ namespace OTSC_ui.Tools.AppSettingJsonPhars.ConnectionStringManager
             JsonReaderForConfig jsonReader = new();
             try
             {
-                rootConfig = jsonReader.Read<RootConfig>(@"C:\\Users\\glkru\\RiderProjects\\OTSC_server\\ClassLibrary1\\tools\\AppSettingJsonPhars\\RealSAppSettimgs.json");
+                rootConfig = jsonReader.Read<RootConfig>(@"C:\Users\Николай\RiderProjects\OTSC_server\OTSC_server\appsettings.json");
                 Log.Information($"ConnectionStringManager: settings:{rootConfig}");
             }
             catch (Exception ex)
